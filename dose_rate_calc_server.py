@@ -32,7 +32,7 @@ def doserate():
     number_of_runs = data.get('number_of_runs', '10')
     isotope_halflife = data.get('isotope_halflife', '110')
     days_per_week = data.get('days_per_week', '5')
-    target_exposure = data.get('target_exposure', '2')
+    target_dose = data.get('target_dose', '2')
 
     try:
         starting_activity = vtor.check('float', starting_activity)
@@ -41,7 +41,7 @@ def doserate():
         number_of_runs = vtor.check('float', number_of_runs)
         isotope_halflife = vtor.check('float', isotope_halflife)
         days_per_week = vtor.check('float', days_per_week)
-        target_exposure = vtor.check('float', target_exposure)
+        target_dose = vtor.check('float', target_dose)
     except ValidateError:
         #flash('Invalid entry, all values must be floats or ints!')
         abort(404)
@@ -58,7 +58,7 @@ def doserate():
     app.logger.debug("Dose: %f" % dose)
     dose = dose * number_of_runs * days_per_week
 
-    barrier_thickness = calc_required_shield(target_exposure,
+    barrier_thickness = calc_required_shield(target_dose,
                                              dose)
 
     results = {"dose": dose,

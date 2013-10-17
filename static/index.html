@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bootstrap 101 Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+      <div class="container">     
+      <h1>Radiation Dose Calculator</h1>
+      <!--<form class="form-horizontal" method=get action="http://localhost:5000/doserate">-->
+          <form class="form-horizontal" method=get action="http://radioactiverobotics.com/doseratecalc/doserate">
+        <fieldset>
+        <!-- Form Name -->
+        <legend>Parameters</legend>
+
+
+            <!-- Text input-->
+            <div class="control-group">
+              <label class="control-label" for="starting_activity">Starting Activity</label>
+              <div class="controls">
+                <input id="starting_activity" name="starting_activity" type="text" placeholder="mCi" class="input-xlarge" value="100.0">
+                <p class="help-block">example: 100.0 mCi</p>
+              </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="control-group">
+              <label class="control-label" for="distance">Distance</label>
+              <div class="controls">
+                <input id="distance" name="distance" type="text" placeholder="meters" class="input-xlarge" value="1.0">
+                <p class="help-block">example: 1.0 meters</p>
+              </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="control-group">
+              <label class="control-label" for="time_per_run">Time per run</label>
+              <div class="controls">
+                <input id="time_per_run" name="time_per_run" type="text" placeholder="minutes" class="input-xlarge" value="30.0">
+                <p class="help-block">example: 30.0 minutes</p>
+              </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="control-group">
+              <label class="control-label" for="number_of_runs">Number of Runs</label>
+              <div class="controls">
+                <input id="number_of_runs" name="number_of_runs" type="text" placeholder="count" class="input-xlarge" value="10">
+                <p class="help-block">example: 10</p>
+              </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="control-group">
+              <label class="control-label" for="isotope_halflife">Isotope Half-life</label>
+              <div class="controls">
+                <input id="isotope_halflife" name="isotope_halflife" type="text" placeholder="minutes" class="input-xlarge" value="110">
+                <p class="help-block">example: 110 minutes</p>
+              </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="control-group">
+              <label class="control-label" for="days_per_week">Days worked per week</label>
+              <div class="controls">
+                <input id="days_per_week" name="days_per_week" type="text" placeholder="days" class="input-xlarge" value=5>
+                <p class="help-block">example: 5 days/week</p>
+              </div>
+            </div>
+
+            <!-- Button -->
+            <div class="control-group">
+              <div class="controls">
+                <button id="singlebutton" class="btn btn-primary">Calculate</button>
+              </div>
+            </div>
+
+                                      
+                
+        </fieldset>
+    </form>
+  </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="//code.jquery.com/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="dist/js/bootstrap.min.js"></script>
+  </body>
+</html>

@@ -53,7 +53,7 @@ def doserate():
     app.logger.debug("Hrs/Week/Run: %f", time_per_run / 60.0 / 40.0)
     app.logger.debug("Distance: %f" % distance)
     dose = dose_rate(avg_act,
-                     time_per_run / 60.0 / 40.0,
+                     time_per_run / (7 * 24),
                      distance)
     app.logger.debug("Dose: %f" % dose)
     dose = dose * number_of_runs * days_per_week

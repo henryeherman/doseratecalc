@@ -40,7 +40,7 @@ def doserate():
         isotope_halflife = vtor.check('float', isotope_halflife)
         days_per_week = vtor.check('float', days_per_week)
     except ValidateError:
-        flash('Invalid entry, all values must be floats or ints!')
+        #flash('Invalid entry, all values must be floats or ints!')
         abort(404)
 
     avg_act = average_activity(starting_activity,
@@ -53,7 +53,7 @@ def doserate():
                      time_per_run / 60.0 / 40.0,
                      distance)
     app.logger.debug("Dose: %f" % dose)
-    dose = dose * number_of_runs * 5.0
+    dose = dose * number_of_runs * days_per_week
     results = {"dose": dose,
                "dose units": "mrem/week",
                "avgerage activity": avg_act,

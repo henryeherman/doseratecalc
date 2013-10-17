@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 from flask import Flask
-from flask import flash
+#from flask import flash
 from flask import abort
 from flask import jsonify
 from flask import request
 from validate import Validator, ValidateError
 from avg_act import average_activity
 from dose_rate import dose_rate
+from required_shield import calc_required_shield
 
 app = Flask(__name__)
 
@@ -31,6 +32,7 @@ def doserate():
     number_of_runs = data.get('number_of_runs', '10')
     isotope_halflife = data.get('isotope_halflife', '110')
     days_per_week = data.get('days_per_week', '5')
+    target_exposure = data.get('target_exposure', '2')
 
     try:
         starting_activity = vtor.check('float', starting_activity)
@@ -39,6 +41,7 @@ def doserate():
         number_of_runs = vtor.check('float', number_of_runs)
         isotope_halflife = vtor.check('float', isotope_halflife)
         days_per_week = vtor.check('float', days_per_week)
+        target_exposure = vtor.check('float', target_exposure)
     except ValidateError:
         #flash('Invalid entry, all values must be floats or ints!')
         abort(404)
@@ -54,10 +57,17 @@ def doserate():
                      distance)
     app.logger.debug("Dose: %f" % dose)
     dose = dose * number_of_runs * days_per_week
+
+    barrier_thickness = calc_required_shield(target_exposure,
+                                             dose)
+
     results = {"dose": dose,
                "dose units": "mrem/week",
                "avgerage activity": avg_act,
-               "activity units": "mCi"}
+               "activity units": "mCi",
+               "barrier_thickness_mm": barrier_thickness,
+               "barrier_thickness_in": barrier_thickness / 25.4}
+
     return jsonify(**results)
 
 if __name__ == '__main__':
